@@ -20,7 +20,7 @@ logging.basicConfig(
     level=logging.DEBUG,
     format="{asctime} {levelname:<8} {message}",
     style='{',
-    filename='challenge'+temporaldia+'.log',
+    filename='.\logs\challenge'+temporaldia+'.log',
     filemode='a'
 )
 
@@ -362,11 +362,13 @@ def update_csv_datas():
     except Exception as ex:
         return jsonify({'mensaje': "Error", 'exito': False,'Detalle':str(ex)}) 
 
+##AVRO
+
 #Function to write Avro file iterated over SQL input in getsql 
 def CreateAvroFile(filename,schema,table_name):
     listar_datoscomplete = listar_complete(table_name)
     #opens file object using wb(write binary)
-    file = open(filename, 'wb')
+    file = open('.\\files\\'+filename, 'wb')
     datum_writer = DatumWriter()
     row_writer = DataFileWriter(file, datum_writer, schema)
     if table_name == 'hired_employees':
@@ -458,7 +460,7 @@ def create_avro():
 def read_avro():
     name_avro = request.json['name_avro']
     result = []
-    for root, dir, files in os.walk('./'):
+    for root, dir, files in os.walk('./files/'):
         if name_avro in files:
             result.append(os.path.join(root, name_avro))
     if len(result) > 0 :
@@ -474,10 +476,10 @@ def read_avro():
 @app.route('/api/list_avro', methods=['GET'])
 def list_avro():
     result = []
-    for root, dir, files in os.walk('./'):
+    for root, dir, files in os.walk('./files/'):
         for file in files :
             if file[-4:] == 'avro' and file != 'avro':
-                result.append(os.path.join(root, file))
+                result.append(os.path.join(root, file)[8:])
     if len(result) > 0 :
         return jsonify({'mensaje': "OK",'lista':result}) 
     else:
@@ -489,11 +491,11 @@ def upload_avro():
     name_avro = request.json['name_avro']
     result = []
     numero_insert = 0
-    for root, dir, files in os.walk('./'):
+    for root, dir, files in os.walk('./files/'):
         if name_avro in files:
             result.append(os.path.join(root, name_avro))
     if len(result) > 0 :
-        reader = DataFileReader(open(name_avro, "rb"), DatumReader())
+        reader = DataFileReader(open('./files/'+name_avro, "rb"), DatumReader())
         lista = []
         completar = ''
         if name_avro[:15] == 'hired_employees':
