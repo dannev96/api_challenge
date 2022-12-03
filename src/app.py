@@ -579,7 +579,6 @@ def consulta_sql2(year_minor,year_mayor,dato):
         
         SELECT id, department, hired
             FROM cte """.format(year_minor,year_mayor)
-    print('=================='+dato)
     if dato == 'all':
         cadena =""" """
     elif dato == 'lower':
@@ -652,7 +651,6 @@ def list_department_hired():
     sql = consulta_sql2(year_minor,year_mayor,dato4)
     cursor = conexion.connection.cursor()
     cursor.execute(sql)
-    print(sql)
     datos = cursor.fetchall()
     df = pd.DataFrame(datos, columns =['id', 'department', 'hired'])
     df = df.astype({'id':'int','hired':'int'})
