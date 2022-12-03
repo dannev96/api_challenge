@@ -568,7 +568,7 @@ def consulta_sql(year_minor,year_mayor,cadena):
         order by """.format(year_minor,year_mayor)  + cadena
     return sql
 
-def consulta_sql2(year_minor,year_mayor):
+def consulta_sql2(year_minor,year_mayor,dato):
     sql = """with cte as
         (
 		select B.id as id ,B.department as department,count(1) as hired from challenge.hired_employees A
@@ -578,10 +578,15 @@ def consulta_sql2(year_minor,year_mayor):
         )
         
         SELECT id, department, hired
-            FROM cte
-            WHERE hired > (
-                SELECT avg(hired) FROM cte
-            )""".format(year_minor,year_mayor)
+            FROM cte """.format(year_minor,year_mayor)
+    print('=================='+dato)
+    if dato == 'all':
+        cadena =""" """
+    elif dato == 'lower':
+        cadena ="""WHERE hired < ( SELECT avg(hired) FROM cte )"""
+    else:
+        cadena ="""WHERE hired > ( SELECT avg(hired) FROM cte )"""
+    sql += cadena
     return sql
 
 
@@ -640,11 +645,14 @@ def download_list_hired():
 def list_department_hired():
     dato2 = request.args.get('year')
     dato2 = validar_dato2(dato2)
+    dato4 = request.args.get('mean')
+    dato4 = validar_dato4(dato4)
     year_minor =  str(int(dato2))+'-01-01'
     year_mayor = str(int(dato2)+1)+'-01-01'
-    sql = consulta_sql2(year_minor,year_mayor,)
+    sql = consulta_sql2(year_minor,year_mayor,dato4)
     cursor = conexion.connection.cursor()
     cursor.execute(sql)
+    print(sql)
     datos = cursor.fetchall()
     df = pd.DataFrame(datos, columns =['id', 'department', 'hired'])
     df = df.astype({'id':'int','hired':'int'})
@@ -656,7 +664,9 @@ def download_list_department_hired():
     dato2 = validar_dato2(dato2)
     year_minor =  str(int(dato2))+'-01-01'
     year_mayor = str(int(dato2)+1)+'-01-01'
-    sql = consulta_sql2(year_minor,year_mayor,)
+    dato4 = request.args.get('mean')
+    dato4 = validar_dato2(dato4)
+    sql = consulta_sql2(year_minor,year_mayor,dato4)
     cursor = conexion.connection.cursor()
     cursor.execute(sql)
     datos = cursor.fetchall()

@@ -24,6 +24,20 @@ def validar_dato1(dato1: str) -> bool:
         return ['department','job']
 
 # Valida el string (si es un texto sin espacios en blanco de entre 1 y 30 caracteres).
+def validar_dato4(dato4: str) -> bool:
+    try:
+        if dato4.lower() == 'upper' or dato4.lower() == 'lower' or dato4.lower() == 'all':
+            dato4f=dato4.lower()
+        else:
+            dato4f = 'upper'
+
+        if dato4 == None :
+            dato4f = 'upper'
+        return dato4f
+    except:
+        return 'upper'
+
+# Valida el string (si es un texto sin espacios en blanco de entre 1 y 30 caracteres).
 def validar_dato2(dato2: str) -> bool:
     try:
         if dato2 == None :
