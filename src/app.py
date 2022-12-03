@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template, send_file,Response
 from werkzeug.utils import secure_filename
 from flask_mysqldb import MySQL
 from flask_cors import CORS, cross_origin
@@ -14,6 +14,16 @@ import logging
 import avro.schema
 from avro.datafile import DataFileReader, DataFileWriter
 from avro.io import DatumReader, DatumWriter
+from flask_jsonpify import jsonpify
+
+logging.getLogger('werkzeug').disabled = True
+#logging.getLogger('werkzeug').disabled = True
+
+'''old_getLogger = logging.getLogger
+def getLogger(*args, **kwargs):
+    print('Getting logger', args, kwargs)
+    return old_getLogger(*args, **kwargs)
+logging.getLogger = getLogger'''
 
 temporaldia= str(datetime.date.today()).replace(' ','_')
 logging.basicConfig(
@@ -348,7 +358,6 @@ def update_csv_datas():
                 return jsonify({'mensaje': "Error columna"}) 
             final_sql = sql + completar
             final_sql = final_sql[:-2]
-            #print(final_sql)
             if numero_insert > 0:
                 cursor = conexion.connection.cursor()
                 cursor.execute(final_sql)
@@ -442,11 +451,8 @@ def createschema(name_avro,name_table):
 def create_avro():
     try:
         name_table = request.json['name_table']
-        print(name_table)
         name_avro = name_table +'_'+ request.json['name_avro']+'.avro'
-        print(name_avro)
         flgschema,schema = createschema(name_avro,name_table)
-        print(schema)
         if flgschema:
             CreateAvroFile(name_avro,schema,name_table)
             return jsonify({'mensaje': "OK",'name_avro_created':name_avro}) 
@@ -534,6 +540,129 @@ def upload_avro():
             return jsonify({'mensaje': "Avro empty process abort"}) 
     else:
         return jsonify({'mensaje': "Avro file not find"}) 
+
+
+def consulta_sql(year_minor,year_mayor,cadena):
+    sql = """with cte as
+        (
+        select
+            A.job_id as job_id,
+            A.department_id as department_id,
+            max(case when A.Q = 1 then total end) as Q1,
+            max(case when A.Q = 2 then total end) as Q2,
+            max(case when A.Q = 3 then total end) as Q3,
+            max(case when A.Q = 4 then total end) as Q4
+        from (select job_id,department_id,quarter(datetime) as Q,count(1) as total from challenge.hired_employees  
+        where datetime >= '{0}' and datetime <'{1}'
+        group by job_id,department_id,Q) A
+        group by
+            A.job_id,
+            A.department_id
+        )
+
+        select 
+            C.department as department,B.job as job,A.Q1 as Q1,A.Q2 as Q2,A.Q3 as Q3,A.Q4 as Q4
+        from cte A
+        left join jobs B ON A.job_id = B.id
+        left join departments C ON A.department_id = C.id
+        order by """.format(year_minor,year_mayor)  + cadena
+    return sql
+
+def consulta_sql2(year_minor,year_mayor):
+    sql = """with cte as
+        (
+		select B.id as id ,B.department as department,count(1) as hired from challenge.hired_employees A
+		left join challenge.departments B ON A.department_id = B.id
+		where A.datetime >= '{0}' and A.datetime < '{1}'
+		group by id,department order by hired desc
+        )
+        
+        SELECT id, department, hired
+            FROM cte
+            WHERE hired > (
+                SELECT avg(hired) FROM cte
+            )""".format(year_minor,year_mayor)
+    return sql
+
+
+@app.route('/api/stkhldr/hired', methods=['GET'])
+def list_hired():
+    dato1 = request.args.get('group')
+    dato1 = validar_dato1(dato1)
+
+    dato2 = request.args.get('year')
+    dato2 = validar_dato2(dato2)
+    year_minor =  str(int(dato2))+'-01-01'
+    year_mayor = str(int(dato2)+1)+'-01-01'
+
+    dato3 = request.args.get('order')
+    dato3 = validar_dato3(dato3)
+    cadena = ' '
+    for dat in dato3 :
+        cadena += dat+' ,'
+    cadena = cadena[:-2]
+    sql = consulta_sql(year_minor,year_mayor,cadena)
+
+    cursor = conexion.connection.cursor()
+    cursor.execute(sql)
+    datos = cursor.fetchall()
+    df = pd.DataFrame(datos, columns =['department', 'job', 'Q1','Q2','Q3','Q4'])
+    df=df.fillna(0)
+    df = df.astype({'Q1':'int','Q2':'int','Q3':'int','Q4':'int'})
+    return render_template('simple.html',  tables=[df.to_html(classes='data', header="true")], year=year_minor.split('-')[0])
+
+@app.route('/api/download/stkhldr/hired', methods=['GET'])
+def download_list_hired():
+    dato1 = request.args.get('group')
+    dato1 = validar_dato1(dato1)
+
+    dato2 = request.args.get('year')
+    dato2 = validar_dato2(dato2)
+    year_minor =  str(int(dato2))+'-01-01'
+    year_mayor = str(int(dato2)+1)+'-01-01'
+
+    dato3 = request.args.get('order')
+    dato3 = validar_dato3(dato3)
+    cadena = ' '
+    for dat in dato3 :
+        cadena += dat+' ,'
+    cadena = cadena[:-2]
+    sql = consulta_sql(year_minor,year_mayor,cadena)
+    cursor = conexion.connection.cursor()
+    cursor.execute(sql)
+    datos = cursor.fetchall()
+    df = pd.DataFrame(datos, columns =['department', 'job', 'Q1','Q2','Q3','Q4'])
+    df=df.fillna(0)
+    df = df.astype({'Q1':'int','Q2':'int','Q3':'int','Q4':'int'})
+    return Response(df.to_csv(),mimetype="text/csv",headers={"Content-Disposition":"attachment;filename=report_hired_"+year_minor.split('-')[0]+'.csv'})
+
+@app.route('/api/stkhldr/department_hired', methods=['GET'])
+def list_department_hired():
+    dato2 = request.args.get('year')
+    dato2 = validar_dato2(dato2)
+    year_minor =  str(int(dato2))+'-01-01'
+    year_mayor = str(int(dato2)+1)+'-01-01'
+    sql = consulta_sql2(year_minor,year_mayor,)
+    cursor = conexion.connection.cursor()
+    cursor.execute(sql)
+    datos = cursor.fetchall()
+    df = pd.DataFrame(datos, columns =['id', 'department', 'hired'])
+    df = df.astype({'id':'int','hired':'int'})
+    return render_template('simple2.html',  tables=[df.to_html(classes='data', header="true")], year=year_minor.split('-')[0])
+
+@app.route('/api/download/stkhldr/department_hired', methods=['GET'])
+def download_list_department_hired():
+    dato2 = request.args.get('year')
+    dato2 = validar_dato2(dato2)
+    year_minor =  str(int(dato2))+'-01-01'
+    year_mayor = str(int(dato2)+1)+'-01-01'
+    sql = consulta_sql2(year_minor,year_mayor,)
+    cursor = conexion.connection.cursor()
+    cursor.execute(sql)
+    datos = cursor.fetchall()
+    df = pd.DataFrame(datos, columns =['id', 'department', 'hired'])
+    df = df.astype({'id':'int','hired':'int'})
+    return Response(df.to_csv(),mimetype="text/csv",headers={"Content-Disposition":"attachment;filename=department_hired_mean"+year_minor.split('-')[0]+'.csv'})
 
 def pagina_no_encontrada(error):
     return "<h1>Página no encontrada</h1>", 404
