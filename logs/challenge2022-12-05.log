@@ -1,0 +1,225 @@
+2022-12-05 00:09:57,052 INFO     =====API STARTED=====
+2022-12-05 00:09:57,702 INFO     =====API STARTED=====
+2022-12-05 00:10:54,284 INFO     =====API STARTED=====
+2022-12-05 00:10:59,327 INFO     =====API STARTED=====
+2022-12-05 00:11:04,342 INFO     =====API STARTED=====
+2022-12-05 00:11:10,517 INFO     =====API STARTED=====
+2022-12-05 00:11:14,564 INFO     =====API STARTED=====
+2022-12-05 00:11:20,065 WARNING  Data not inserted or updated:
+id                                  2
+name                         Ty Hofer
+datetime         2021-05-30T05:43:46Z
+department_id                     8.0
+job_id                               
+Name: 1, dtype: object
+2022-12-05 00:11:20,081 WARNING  Data not inserted or updated:
+id                                 67
+name                     Thia Morican
+datetime         2021-03-10T19:27:10Z
+department_id                        
+job_id                          104.0
+Name: 66, dtype: object
+2022-12-05 00:11:20,085 WARNING  Data not inserted or updated:
+id                                 84
+name                   Ludvig Norwood
+datetime         2021-02-26T18:47:53Z
+department_id                     3.0
+job_id                               
+Name: 83, dtype: object
+2022-12-05 00:11:20,086 WARNING  Data not inserted or updated:
+id                                  87
+name             Cirstoforo Martinetto
+datetime          2021-10-15T09:19:20Z
+department_id                         
+job_id                            84.0
+Name: 86, dtype: object
+2022-12-05 00:11:20,088 WARNING  Data not inserted or updated:
+id                                 97
+name                    Beltran Natte
+datetime         2021-11-01T05:12:01Z
+department_id                        
+job_id                           67.0
+Name: 96, dtype: object
+2022-12-05 00:11:20,097 WARNING  Data not inserted or updated:
+id                                133
+name                    Jennine Wapol
+datetime         2022-01-24T14:45:57Z
+department_id                        
+job_id                           49.0
+Name: 132, dtype: object
+2022-12-05 00:11:20,104 WARNING  Data not inserted or updated:
+id                           157
+name             Kellia Barribal
+datetime                        
+department_id                4.0
+job_id                      61.0
+Name: 156, dtype: object
+2022-12-05 00:11:20,113 WARNING  Data not inserted or updated:
+id                                198
+name                   Carline Fryman
+datetime         2021-05-29T00:23:02Z
+department_id                     5.0
+job_id                               
+Name: 197, dtype: object
+2022-12-05 00:11:20,115 WARNING  Data not inserted or updated:
+id                                207
+name                      Ahmad Fader
+datetime         2021-05-03T04:57:25Z
+department_id                        
+job_id                           66.0
+Name: 206, dtype: object
+2022-12-05 00:11:20,118 WARNING  Data not inserted or updated:
+id                                216
+name                 Theobald Tzarkov
+datetime         2022-01-26T14:56:48Z
+department_id                        
+job_id                           87.0
+Name: 215, dtype: object
+2022-12-05 00:11:20,152 WARNING  Data not inserted or updated:
+id                                393
+name                    Bogey Hanwell
+datetime         2022-01-05T17:29:34Z
+department_id                     6.0
+job_id                               
+Name: 392, dtype: object
+2022-12-05 00:11:20,179 WARNING  Data not inserted or updated:
+id                                533
+name                Tiertza Vanyashin
+datetime         2022-02-04T20:16:06Z
+department_id                     3.0
+job_id                               
+Name: 532, dtype: object
+2022-12-05 00:11:20,207 WARNING  Data not inserted or updated:
+id                        663
+name             Catha Gowrie
+datetime                     
+department_id             4.0
+job_id                   85.0
+Name: 662, dtype: object
+2022-12-05 00:11:20,213 WARNING  Data not inserted or updated:
+id                                685
+name                      Bruno Pales
+datetime         2022-01-16T19:23:39Z
+department_id                        
+job_id                           92.0
+Name: 684, dtype: object
+2022-12-05 00:11:20,230 WARNING  Data not inserted or updated:
+id                                758
+name                     Dyanne Rainy
+datetime         2021-06-11T00:56:42Z
+department_id                     8.0
+job_id                               
+Name: 757, dtype: object
+2022-12-05 00:11:20,238 WARNING  Data not inserted or updated:
+id                           789
+name             Jennine Fakeley
+datetime                        
+department_id                2.0
+job_id                      94.0
+Name: 788, dtype: object
+2022-12-05 00:11:20,239 WARNING  Data not inserted or updated:
+id                                792
+name                   Hetty Cawthery
+datetime         2022-01-21T11:08:04Z
+department_id                    10.0
+job_id                               
+Name: 791, dtype: object
+2022-12-05 00:11:20,246 WARNING  Data not inserted or updated:
+id                                824
+name                 Kaitlynn Rannald
+datetime         2021-04-18T15:11:19Z
+department_id                        
+job_id                           64.0
+Name: 823, dtype: object
+2022-12-05 00:11:20,247 WARNING  Data not inserted or updated:
+id                                832
+name                      Letta Paull
+datetime         2021-10-29T02:35:02Z
+department_id                        
+job_id                          122.0
+Name: 831, dtype: object
+2022-12-05 00:11:20,270 WARNING  Data not inserted or updated:
+id                                932
+name                    Celeste Stops
+datetime         2021-02-07T22:14:01Z
+department_id                     8.0
+job_id                               
+Name: 931, dtype: object
+2022-12-05 00:11:20,273 WARNING  Data not inserted or updated:
+id                                942
+name                  Joaquin Kamenar
+datetime         2021-11-29T11:54:05Z
+department_id                        
+job_id                           64.0
+Name: 941, dtype: object
+2022-12-05 00:11:20,276 WARNING  Data not inserted or updated:
+id                                955
+name                       Shena Gore
+datetime         2021-08-16T21:25:08Z
+department_id                     9.0
+job_id                               
+Name: 954, dtype: object
+2022-12-05 00:11:20,277 WARNING  Data not inserted or updated:
+id                                961
+name               Lionello Andriesse
+datetime         2022-02-12T05:19:44Z
+department_id                     8.0
+job_id                               
+Name: 960, dtype: object
+2022-12-05 00:13:44,056 DEBUG    Writing Avro data file header:
+{'magic': b'Obj\x01', 'meta': {'avro.codec': b'null', 'avro.schema': b'{"type": "record", "name": "departments", "namespace": "departments_ejem.avro", "fields": [{"type": "int", "name": "id"}, {"type": "string", "name": "department"}]}'}, 'sync': b'\x0eD\xb7\xdf\xcc\x17\xfd!^\xb3\xd5\x0f\xacmh"'}
+Avro header schema:
+{"type": "record", "name": "Header", "namespace": "org.apache.avro.file", "fields": [{"type": {"type": "fixed", "name": "magic", "namespace": "org.apache.avro.file", "size": 4}, "name": "magic"}, {"type": {"type": "map", "values": "bytes"}, "name": "meta"}, {"type": {"type": "fixed", "name": "sync", "namespace": "org.apache.avro.file", "size": 16}, "name": "sync"}]}
+2022-12-05 00:13:44,056 DEBUG    Writing block with count=12 nbytes=164 sync=b'\x0eD\xb7\xdf\xcc\x17\xfd!^\xb3\xd5\x0f\xacmh"'
+2022-12-05 00:18:54,003 INFO     =====API STARTED=====
+2022-12-05 00:20:35,790 INFO     =====API STARTED=====
+2022-12-05 00:22:21,544 DEBUG    Writing Avro data file header:
+{'magic': b'Obj\x01', 'meta': {'avro.codec': b'null', 'avro.schema': b'{"type": "record", "name": "departments", "namespace": "departments_ejem34.avro", "fields": [{"type": "int", "name": "id"}, {"type": "string", "name": "department"}]}'}, 'sync': b'u\xe4\xa5\xbb\xea\x85\xceE?\x9e\xeaA\xf0\x11\xbf\x9d'}
+Avro header schema:
+{"type": "record", "name": "Header", "namespace": "org.apache.avro.file", "fields": [{"type": {"type": "fixed", "name": "magic", "namespace": "org.apache.avro.file", "size": 4}, "name": "magic"}, {"type": {"type": "map", "values": "bytes"}, "name": "meta"}, {"type": {"type": "fixed", "name": "sync", "namespace": "org.apache.avro.file", "size": 16}, "name": "sync"}]}
+2022-12-05 00:22:21,544 DEBUG    Writing block with count=12 nbytes=164 sync=b'u\xe4\xa5\xbb\xea\x85\xceE?\x9e\xeaA\xf0\x11\xbf\x9d'
+2022-12-05 00:24:42,097 INFO     =====API STARTED=====
+2022-12-05 00:25:04,123 INFO     =====API STARTED=====
+2022-12-05 00:30:41,245 INFO     =====API STARTED=====
+2022-12-05 00:33:02,833 INFO     =====API STARTED=====
+2022-12-05 00:33:27,883 INFO     =====API STARTED=====
+2022-12-05 00:35:03,436 INFO     =====API STARTED=====
+2022-12-05 00:35:46,351 INFO     =====API STARTED=====
+2022-12-05 00:36:32,385 INFO     =====API STARTED=====
+2022-12-05 00:36:41,633 INFO     =====API STARTED=====
+2022-12-05 00:36:45,702 INFO     =====API STARTED=====
+2022-12-05 00:36:48,787 INFO     =====API STARTED=====
+2022-12-05 00:37:39,083 INFO     =====API STARTED=====
+2022-12-05 00:38:25,535 INFO     =====API STARTED=====
+2022-12-05 08:43:36,987 INFO     =====API STARTED=====
+2022-12-05 08:58:46,645 INFO     =====API STARTED=====
+2022-12-05 08:58:55,908 INFO     =====API STARTED=====
+2022-12-05 09:19:36,113 INFO     =====API STARTED=====
+2022-12-05 09:19:36,767 INFO     =====API STARTED=====
+2022-12-05 09:19:42,034 INFO     =====API STARTED=====
+2022-12-05 09:20:13,450 INFO     =====API STARTED=====
+2022-12-05 09:20:57,347 INFO     =====API STARTED=====
+2022-12-05 09:20:57,990 INFO     =====API STARTED=====
+2022-12-05 09:32:27,273 INFO     =====API STARTED=====
+2022-12-05 09:57:25,311 INFO     =====API STARTED=====
+2022-12-05 09:57:25,943 INFO     =====API STARTED=====
+2022-12-05 10:00:19,982 INFO     =====API STARTED=====
+2022-12-05 10:10:39,318 INFO     =====API STARTED=====
+2022-12-05 10:10:54,893 INFO     =====API STARTED=====
+2022-12-05 10:11:21,360 INFO     =====API STARTED=====
+2022-12-05 10:13:14,624 INFO     =====API STARTED=====
+2022-12-05 10:13:54,487 INFO     =====API STARTED=====
+2022-12-05 10:17:48,659 INFO     =====API STARTED=====
+2022-12-05 10:22:02,623 INFO     =====API STARTED=====
+2022-12-05 10:33:53,713 INFO     =====API STARTED=====
+2022-12-05 10:34:23,097 INFO     =====API STARTED=====
+2022-12-05 10:37:34,825 INFO     =====API STARTED=====
+2022-12-05 10:37:38,967 INFO     =====API STARTED=====
+2022-12-05 10:39:15,733 INFO     =====API STARTED=====
+2022-12-05 10:41:08,009 INFO     =====API STARTED=====
+2022-12-05 10:43:11,115 INFO     =====API STARTED=====
+2022-12-05 10:43:33,023 INFO     =====API STARTED=====
+2022-12-05 10:44:48,408 INFO     =====API STARTED=====
+2022-12-05 10:44:49,102 INFO     =====API STARTED=====
+2022-12-05 10:45:09,021 INFO     =====API STARTED=====
+2022-12-05 10:45:27,845 INFO     =====API STARTED=====

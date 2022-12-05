@@ -1,0 +1,22 @@
+{% extends './base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<h1>Welcome, {{ current_user.fullname }}</h1>
+<p>Links:</p>
+<p><a href="http://127.0.0.1:5000/api/stkhldr/department_hired?year=2021&mean=lower">department_hired</a>
+<br>Allowed values:
+<br>year = '2020','2021','2022',etc.
+<br>mean = 'lower','upper','all'</p>
+
+<p><a href="http://127.0.0.1:5000/api/stkhldr/hired?year=2021&order=department%20desc,job%20asc">hired</a>
+<br>Allowed values:
+<br>year = '2020','2021','2022',etc.
+<br>order = 'department desc,job asc','Q1 desc,Q2 asc',etc.</p>
+
+<p>If you want to download a table just add 
+
+</p>
+<a class="btn btn-secondary" href="{{ url_for('logout') }}">Logout</a>
+{% endblock %}

@@ -1,4 +1,7 @@
-class DevelopmentConfig():
+class Config:
+    SECRET_KEY = 'V!2v4MAEu0D%^kkhOU*R^'
+
+class DevelopmentConfig(Config):
     DEBUG = True
     MYSQL_HOST = 'localhost'
     MYSQL_USER = 'root'
